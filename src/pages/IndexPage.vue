@@ -62,6 +62,13 @@ const list = {
         max: 65535,
         type: "number",
       },
+      {
+        name: "port",
+        title: "Порт",
+        default: "Facebook",
+        options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+        type: "widget_com_port",
+      },
     ],
   },
   device_settings_connection_parameters: {

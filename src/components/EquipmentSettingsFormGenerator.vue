@@ -14,13 +14,16 @@
       <template v-if="elementKey === 'fields'">
         <template v-for="field in element" :key="field.name">
           <template v-if="field.type === 'number'">
-            <fieldNumber :numberParams="field" />
+            <FieldNumber :numberParams="field" />
           </template>
           <template v-if="field.type === 'text'">
-            <fieldText :textParams="field" />
+            <FieldText :textParams="field" />
           </template>
           <template v-if="field.type === 'boolean'">
-            <fieldBoolean :boolParams="field" />
+            <FieldBoolean :boolParams="field" />
+          </template>
+          <template v-if="field.type === 'widget_com_port'">
+            <FieldWidgetComPortSelect :comPortParams="field" />
           </template>
           <br />
         </template>
@@ -51,9 +54,10 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import fieldNumber from "./fields/fieldNumber.vue";
-import fieldText from "./fields/fieldText.vue";
-import fieldBoolean from "./fields/fieldBoolean.vue";
+import FieldNumber from "./fields/fieldNumber.vue";
+import FieldText from "./fields/fieldText.vue";
+import FieldBoolean from "./fields/fieldBoolean.vue";
+import FieldWidgetComPortSelect from "./fields/FieldWidgetComPortSelect.vue";
 const groupsFields = defineProps({ objectGroups: Object });
 // let elementRefs = ref({});
 // for (let el of groupsFields) {
