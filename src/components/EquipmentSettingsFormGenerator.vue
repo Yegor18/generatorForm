@@ -28,15 +28,6 @@
           <br />
         </template>
       </template>
-      <!-- <template v-if="element.type === 'number'">
-        <q-input
-          v-model="elementRefs[element.id]"
-          type="number"
-          style="width: 200px; height: 200px"
-          >{{ element.value }}</q-input
-        >
-        HELLO WORLD
-      </template> -->
       <!-- <template v-if="element.type === 'date'">
         <q-input
           v-model="elementRefs[element.id]"
@@ -59,6 +50,18 @@ import FieldText from "./fields/fieldText.vue";
 import FieldBoolean from "./fields/fieldBoolean.vue";
 import FieldWidgetComPortSelect from "./fields/FieldWidgetComPortSelect.vue";
 const groupsFields = defineProps({ objectGroups: Object });
+let obj = {};
+for (let group in groupsFields.objectGroups) {
+  let mas = [];
+  for (let field in groupsFields.objectGroups[group].fields) {
+    let obj2 = {};
+    obj2[field.name] = field.default ? obj2[field.default] : null;
+    mas.push(obj2);
+  }
+  obj[group] = mas;
+}
+console.log("This is object ", obj);
+
 // let elementRefs = ref({});
 // for (let el of groupsFields) {
 //   if (el.type === "date") {
