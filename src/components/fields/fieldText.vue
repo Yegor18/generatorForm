@@ -5,7 +5,13 @@
   <q-input
     type="text"
     :name="fieldProperties.textParams.name"
-    v-model="modelValue"
+    :modelValue="modelValue"
+    @update:modelValue="
+      (newValue) => {
+        modelValue = newValue;
+        emit('change', newValue);
+      }
+    "
     style="width: 200px"
     :maxlength="fieldProperties.textParams.MaxLenght"
   />
@@ -13,6 +19,7 @@
 <script setup>
 import { ref } from "vue";
 const fieldProperties = defineProps(["textParams"]);
+const emit = defineEmits(["change"]);
 let modelValue = ref(fieldProperties.textParams.default);
 </script>
 <style lang="sass">

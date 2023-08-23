@@ -30,13 +30,35 @@
       Hello people
     </template>
   </template> -->
-  <EquipmentSettingsFormGenerator :objectGroups="list" />
+  <EquipmentSettingsFormGenerator v-model="modelValue" :objectGroups="list" />
 </template>
 
 <script setup>
 import EquipmentSettingsFormGenerator from "../components/EquipmentSettingsFormGenerator.vue";
 import dateFormat from "dateformat";
 import { ref } from "vue";
+const modelValue = {
+  device_settings_connection: [
+    {
+      path: "value",
+    },
+    {
+      port: "value",
+    },
+  ],
+  device_settings_connection_parameters: [
+    {
+      coil_value: "value",
+    },
+    {
+      delay_value: "value",
+    },
+    {
+      auto_reset_value: "value",
+    },
+    { auto_reset: "value" },
+  ],
+};
 const list = {
   device_settings_connection: {
     title: "Подключение",
@@ -48,12 +70,12 @@ const list = {
         MaxLenght: 150,
         type: "text",
       },
-      {
-        name: "testBool",
-        title: "Boolean",
-        default: true,
-        type: "boolean",
-      },
+      // {
+      //   name: "testBool",
+      //   title: "Boolean",
+      //   default: true,
+      //   type: "boolean",
+      // },
       {
         name: "port",
         title: "Порт",
@@ -62,13 +84,13 @@ const list = {
         max: 65535,
         type: "number",
       },
-      {
-        name: "port",
-        title: "Порт",
-        default: "Facebook",
-        options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
-        type: "widget_com_port",
-      },
+      // {
+      //   name: "port",
+      //   title: "Порт",
+      //   default: "Facebook",
+      //   options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+      //   type: "widget_com_port",
+      // },
     ],
   },
   device_settings_connection_parameters: {
@@ -98,17 +120,15 @@ const list = {
         max: 10000,
         type: "number",
       },
-      // {"name": "auto_reset", "title": "Автосброс", "default": false, "type": "boolean"}
+      {
+        name: "auto_reset",
+        title: "Автосброс",
+        default: false,
+        type: "boolean",
+      },
     ],
   },
 };
-// const list = [
-//   { id: 1, type: "text", value: "text Input" },
-//   { id: 2, type: "number", value: "688900" },
-//   { id: 3, type: "text", value: "text Input 2" },
-//   { id: 4, type: "date", value: "2020-12-03" },
-//   { id: 5, type: "color", value: "#0000FF" },
-// ];
 // let elementRefs = ref({});
 // for (let el of list) {
 //   if (el.type === "date") {
