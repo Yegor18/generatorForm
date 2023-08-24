@@ -18,6 +18,7 @@
           console.log('We have reached minimum limit ', value);
           modelValue = fieldProperties.numberParams.min;
         }
+        emits('change', value);
       }
     "
   />
@@ -25,6 +26,7 @@
 <script setup>
 import { ref } from "vue";
 const fieldProperties = defineProps(["numberParams"]);
+const emits = defineEmits(["change"]);
 let modelValue = ref(fieldProperties.numberParams.default);
 </script>
 <style lang="sass">

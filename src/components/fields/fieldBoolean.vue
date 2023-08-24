@@ -5,6 +5,11 @@
   <q-checkbox
     :name="fieldProperties.boolParams.name"
     v-model="modelValue"
+    @update:model-value="
+      (value) => {
+        emits('change', value);
+      }
+    "
     style="width: 200px"
   />
 </template>
@@ -12,6 +17,7 @@
 import { ref } from "vue";
 const fieldProperties = defineProps(["boolParams"]);
 let modelValue = ref(fieldProperties.boolParams.default);
+const emits = defineEmits(["change"]);
 </script>
 <style lang="sass">
 .label

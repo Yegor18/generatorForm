@@ -37,7 +37,7 @@
 import EquipmentSettingsFormGenerator from "../components/EquipmentSettingsFormGenerator.vue";
 import dateFormat from "dateformat";
 import { ref } from "vue";
-const modelValue = {
+const modelValue = ref({
   device_settings_connection: [
     {
       path: "value",
@@ -58,7 +58,7 @@ const modelValue = {
     },
     { auto_reset: "value" },
   ],
-};
+});
 const list = {
   device_settings_connection: {
     title: "Подключение",
@@ -70,12 +70,12 @@ const list = {
         MaxLenght: 150,
         type: "text",
       },
-      // {
-      //   name: "testBool",
-      //   title: "Boolean",
-      //   default: true,
-      //   type: "boolean",
-      // },
+      {
+        name: "testDate",
+        title: "Date",
+        default: "22.01.2000",
+        type: "date",
+      },
       {
         name: "port",
         title: "Порт",
