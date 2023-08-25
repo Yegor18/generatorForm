@@ -1,41 +1,9 @@
 <template>
-  <!-- <template v-for="element in list" :key="element.id">
-
-    <template v-if="element.type === 'text'">
-      <q-input
-        v-model="elementRefs[element.id]"
-        type="text"
-        style="width: 200px; height: 200px"
-        >{{ element.value }}</q-input
-      >
-    </template>
-    <template v-if="element.type === 'number'">
-      <q-input
-        v-model="elementRefs[element.id]"
-        type="number"
-        style="width: 200px; height: 200px"
-        >{{ element.value }}</q-input
-      >
-    </template>
-    <template v-if="element.type === 'date'">
-      <q-input
-        v-model="elementRefs[element.id]"
-        type="date"
-        style="width: 200px; height: 200px"
-        >{{ element.value }}</q-input
-      >
-    </template>
-    <template v-if="element.type === 'color'">
-      <q-color :model-value="elementRefs[element.id]" class="my-picker" />
-      Hello people
-    </template>
-  </template> -->
   <EquipmentSettingsFormGenerator v-model="modelValue" :objectGroups="list" />
 </template>
 
 <script setup>
 import EquipmentSettingsFormGenerator from "../components/EquipmentSettingsFormGenerator.vue";
-import dateFormat from "dateformat";
 import { ref } from "vue";
 const modelValue = ref({
   device_settings_connection: [
@@ -44,6 +12,9 @@ const modelValue = ref({
     },
     {
       port: "value",
+    },
+    {
+      option: "value",
     },
   ],
   device_settings_connection_parameters: [
@@ -71,12 +42,6 @@ const list = {
         type: "text",
       },
       {
-        name: "testDate",
-        title: "Date",
-        default: "22.01.2000",
-        type: "date",
-      },
-      {
         name: "port",
         title: "Порт",
         default: 1,
@@ -84,13 +49,13 @@ const list = {
         max: 65535,
         type: "number",
       },
-      // {
-      //   name: "port",
-      //   title: "Порт",
-      //   default: "Facebook",
-      //   options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
-      //   type: "widget_com_port",
-      // },
+      {
+        name: "option",
+        title: "Соц сеть",
+        default: "Facebook",
+        options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+        type: "widget_com_port",
+      },
     ],
   },
   device_settings_connection_parameters: {
@@ -129,14 +94,6 @@ const list = {
     ],
   },
 };
-// let elementRefs = ref({});
-// for (let el of list) {
-//   if (el.type === "date") {
-//     let date = new Date(el.value);
-//     el.value = dateFormat(date, "yyyy-mm-dd");
-//   }
-//   elementRefs.value[el.id] = el.value;
-// }
 </script>
 
 <style lang="sass" scoped>

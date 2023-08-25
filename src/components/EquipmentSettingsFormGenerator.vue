@@ -34,27 +34,9 @@
               @change="(value) => updateModelValue(groupKey, field.name, value)"
             />
           </template>
-          <template v-if="field.type === 'date'">
-            <FieldDate
-              :dateParams="field"
-              @change="(value) => updateModelValue(groupKey, field.name, value)"
-            />
-          </template>
           <br />
         </template>
       </template>
-      <!-- <template v-if="element.type === 'date'">
-        <q-input
-          v-model="elementRefs[element.id]"
-          type="date"
-          style="width: 200px; height: 200px"
-          >{{ element.value }}</q-input
-        >
-      </template>
-      <template v-if="element.type === 'color'">
-        <q-color :model-value="elementRefs[element.id]" class="my-picker" />
-        Hello people
-      </template> -->
     </template>
   </template>
 </template>
@@ -64,7 +46,6 @@ import FieldNumber from "./fields/fieldNumber.vue";
 import FieldText from "./fields/fieldText.vue";
 import FieldBoolean from "./fields/fieldBoolean.vue";
 import FieldWidgetComPortSelect from "./fields/FieldWidgetComPortSelect.vue";
-import FieldDate from "./fields/fieldDate.vue";
 const props = defineProps(["objectGroups", "modelValue"]);
 const emit = defineEmits(["update:modelValue"]);
 console.log("model value ", Object.keys(props.modelValue));
@@ -88,13 +69,4 @@ function updateModelValue(group, field, value) {
   emit("update:modelValue", obj);
   setTimeout(() => console.log("Model value changed ", props.modelValue), 500);
 }
-
-// let elementRefs = ref({});
-// for (let el of groupsFields) {
-//   if (el.type === "date") {
-//     let date = new Date(el.value);
-//     el.value = dateFormat(date, "yyyy-mm-dd");
-//   }
-//   elementRefs.value[el.id] = el.value;
-// }
 </script>
