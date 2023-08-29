@@ -61,8 +61,5 @@ function updateModelValue(group, field, value) {
   }
 
   emit("update:modelValue", newModelValue);
-  setTimeout(() => {
-    console.log(props.modelValue);
-  }, 500);
 }
 </script>
