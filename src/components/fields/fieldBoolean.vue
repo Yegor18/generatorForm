@@ -1,9 +1,9 @@
 <template>
-  <label :for="fieldProperties.boolParams.name" class="label">{{
-    fieldProperties.boolParams.title
+  <label :for="fieldProperties.params.name" class="label">{{
+    fieldProperties.params.title
   }}</label>
   <q-checkbox
-    :name="fieldProperties.boolParams.name"
+    :name="fieldProperties.params.name"
     v-model="modelValue"
     @update:model-value="
       (value) => {
@@ -15,11 +15,15 @@
 </template>
 <script setup>
 import { ref } from "vue";
-const fieldProperties = defineProps(["boolParams"]);
-let modelValue = ref(fieldProperties.boolParams.default);
+const fieldProperties = defineProps(["params"]);
+let modelValue = ref(
+  fieldProperties.params.modelValue
+    ? fieldProperties.params.modelValue
+    : fieldProperties.params.default
+);
 const emits = defineEmits(["change"]);
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
 .label
-  font-weights:bold
+  font-weight: bold
 </style>

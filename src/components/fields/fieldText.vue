@@ -1,10 +1,10 @@
 <template>
-  <label :for="fieldProperties.textParams.name" class="label">{{
-    fieldProperties.textParams.title
+  <label :for="fieldProperties.params.name" class="label">{{
+    fieldProperties.params.title
   }}</label>
   <q-input
     type="text"
-    :name="fieldProperties.textParams.name"
+    :name="fieldProperties.params.name"
     :modelValue="modelValue"
     @update:modelValue="
       (newValue) => {
@@ -13,16 +13,20 @@
       }
     "
     style="width: 200px"
-    :maxlength="fieldProperties.textParams.MaxLenght"
+    :maxlength="fieldProperties.params.MaxLength"
   />
 </template>
 <script setup>
 import { ref } from "vue";
-const fieldProperties = defineProps(["textParams"]);
+const fieldProperties = defineProps(["params"]);
 const emits = defineEmits(["change"]);
-let modelValue = ref(fieldProperties.textParams.default);
+let modelValue = ref(
+  fieldProperties.params.modelValue
+    ? fieldProperties.params.modelValue
+    : fieldProperties.params.default
+);
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
 .label
-  font-weights:bold
+  font-weight: bold
 </style>

@@ -1,22 +1,20 @@
 <template>
-  <label :for="fieldProperties.numberParams.name" class="label">{{
-    fieldProperties.numberParams.title
+  <label :for="fieldProperties.params.name" class="label">{{
+    fieldProperties.params.title
   }}</label>
   <q-input
     type="number"
-    :name="fieldProperties.numberParams.name"
+    :name="fieldProperties.params.name"
     v-model="modelValue"
-    :min="fieldProperties.numberParams.min"
-    :max="fieldProperties.numberParams.max"
+    :min="fieldProperties.params.min"
+    :max="fieldProperties.params.max"
     style="width: 200px"
     @update:model-value="
       (value) => {
-        if (value > fieldProperties.numberParams.max) {
-          console.log('We have reached maximum limit ', value);
-          modelValue = fieldProperties.numberParams.max;
-        } else if (value < fieldProperties.numberParams.min) {
-          console.log('We have reached minimum limit ', value);
-          modelValue = fieldProperties.numberParams.min;
+        if (value > fieldProperties.params.max) {
+          modelValue = fieldProperties.params.max;
+        } else if (value < fieldProperties.params.min) {
+          modelValue = fieldProperties.params.min;
         }
         emits('change', value);
       }
@@ -25,11 +23,15 @@
 </template>
 <script setup>
 import { ref } from "vue";
-const fieldProperties = defineProps(["numberParams"]);
+const fieldProperties = defineProps(["params"]);
 const emits = defineEmits(["change"]);
-let modelValue = ref(fieldProperties.numberParams.default);
+let modelValue = ref(
+  fieldProperties.params.modelValue
+    ? fieldProperties.params.modelValue
+    : fieldProperties.params.default
+);
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
 .label
-  font-weights:bold
+  font-weight: bold
 </style>
